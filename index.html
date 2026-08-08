@@ -160,23 +160,24 @@ header.hero{padding-top:40px}
 .steps{list-style:none; margin:22px 0 0; padding:0; display:flex; flex-direction:column; gap:12px; counter-reset:step}
 .step{
   background:var(--surface); border:1px solid var(--line); border-radius:9px;
-  padding:18px 20px; display:grid; gap:4px 20px; box-shadow:var(--shadow);
+  padding:18px 20px; display:grid; gap:0 20px; box-shadow:var(--shadow);
   grid-template-columns:44px minmax(0,1fr) auto; align-items:start;
 }
 .step.is-decision{border-color:var(--pend-line)}
 .step.is-info{background:var(--surface-2)}
 .step .idx{
-  counter-increment:step; grid-row:1 / span 3;
+  counter-increment:step; grid-column:1; grid-row:1;
   font-family:var(--font-data); font-size:13px; color:var(--ink-3);
   border:1px solid var(--line); border-radius:6px; height:34px; width:34px;
   display:grid; place-items:center; margin-top:2px;
 }
+.step .body{grid-column:2; grid-row:1}
 .step.is-done .idx{color:var(--ok); border-color:var(--ok-line); background:var(--ok-bg)}
 .step .idx::before{content:counter(step,decimal-leading-zero)}
 .step h3{font-size:19px; letter-spacing:.045em; text-transform:uppercase}
 .step .meta{font-family:var(--font-data); font-size:12px; color:var(--ink-2); letter-spacing:.05em}
 .step .say{font-size:14px; color:var(--ink-2); margin-top:6px; max-width:56ch}
-.step .act{grid-row:1 / span 3; display:flex; flex-direction:column; align-items:flex-end; gap:8px}
+.step .act{grid-column:3; grid-row:1; display:flex; flex-direction:column; align-items:flex-end; gap:8px}
 .step .btn{padding:10px 16px; font-size:14px}
 .mini-choices{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
 .mini-choices a{
@@ -186,7 +187,7 @@ header.hero{padding-top:40px}
 }
 .mini-choices a:hover{border-color:var(--accent); color:var(--accent)}
 .flight-shot{
-  grid-column:2 / -1; margin-top:14px; border:1px solid var(--line); border-radius:8px;
+  grid-column:2 / -1; grid-row:2; margin-top:14px; border:1px solid var(--line); border-radius:8px;
   background:var(--surface); padding:6px; max-width:520px;
 }
 .flight-shot img{display:block; width:100%; height:auto; border-radius:4px}
@@ -342,9 +343,9 @@ footer p + p{margin-top:10px}
 @media (max-width:720px){
   .wrap{padding:0 16px 72px}
   .step{grid-template-columns:36px minmax(0,1fr)}
-  .step .act{grid-row:auto; grid-column:1 / -1; align-items:stretch; margin-top:12px}
+  .step .act{grid-column:2; grid-row:2; align-items:stretch; margin-top:12px}
   .step .btn{width:100%}
-  .flight-shot{grid-column:1 / -1}
+  .flight-shot{grid-column:2; grid-row:3}
   .frow{grid-template-columns:22px minmax(0,1fr); gap:4px 12px; padding:16px 18px}
   .frow .when,.frow .what,.frow .links{grid-column:2}
   .frow .links{justify-content:flex-start; margin-top:8px}
@@ -389,7 +390,7 @@ footer p + p{margin-top:10px}
   <ol class="steps">
     <li class="step is-done">
       <span class="idx"></span>
-      <div>
+      <div class="body">
         <h3>Book Alle Siepi</h3>
         <div class="meta">SEP 3 – SEP 5 · 2 NIGHTS · REGGIO EMILIA</div>
         <p class="say">Chosen as the Emilia-Romagna base. Nothing is reserved yet — this is the first booking to place.</p>
@@ -402,7 +403,7 @@ footer p + p{margin-top:10px}
 
     <li class="step is-decision">
       <span class="idx"></span>
-      <div>
+      <div class="body">
         <h3>Choose Lake Garda accommodation</h3>
         <div class="meta">SEP 5 – SEP 6 · 1 NIGHT</div>
         <p class="say">Three options, all still open. Location is the deciding factor — two are inland at Lonato, one is in Moniga on the lake. Compare them on the Lake Garda map below.</p>
@@ -420,7 +421,7 @@ footer p + p{margin-top:10px}
 
     <li class="step">
       <span class="idx"></span>
-      <div>
+      <div class="body">
         <h3>Book the selected Lake Garda stay</h3>
         <div class="meta">SEP 5 – SEP 6 · 1 NIGHT</div>
         <p class="say">Once the group agrees on step 2. Early September is still busy on the lake — the sooner this is settled, the better the choice.</p>
@@ -430,7 +431,7 @@ footer p + p{margin-top:10px}
 
     <li class="step is-done">
       <span class="idx"></span>
-      <div>
+      <div class="body">
         <h3>Book HILL COLLE</h3>
         <div class="meta">SEP 6 – SEP 7 · 1 NIGHT · ERBUSCO / FRANCIACORTA</div>
         <p class="say">Chosen as the final Italian stop. Not reserved yet.</p>
@@ -443,7 +444,7 @@ footer p + p{margin-top:10px}
 
     <li class="step is-info" id="flights">
       <span class="idx"></span>
-      <div>
+      <div class="body">
         <h3>Our flights — for information</h3>
         <div class="meta">PS + W · LUX ↔ ZRH · SWISS</div>
         <p class="say">The flights we are likely to take, so you know when we arrive and leave. Nothing for you to do here.</p>
